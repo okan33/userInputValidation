@@ -4,41 +4,41 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<form name="myForm" action="girisYapildi.html" onsubmit="return validateForm()" method="post">
-  Aşağıdaki hiçbir input boş olmamalı: <br>
+<form name="myForm" action="login.html" onsubmit="return validateForm()" method="post">
+  No input below should be empty: <br>
   <table style="width:40%">
   <tr>
-    <td>Boş olmamalı: </td>
+    <td>It should not be empty: </td>
     <td><input type="text" id="name"></td>
     
   </tr>
   <tr>
-    <td>E-mail (Kurallara uygun email): </td>
+    <td>E-mail : </td>
     <td><input type="text" id="email"></td>
     
   </tr>
   <tr>
-    <td>Sadece sayısal: </td>
+    <td>Only numeric: </td>
     <td><input type="text" id="sayisal"></td>
   </tr>
   <tr>
-    <td>Sadece sayısal olan ve 12 basamak uzunluğundaki sayi: </td>
+    <td>Only numeric and 12 digits long: </td>
     <td><input type="text" id="basamakli"></td>
   </tr>
   <tr>
-    <td>Sadece harf (a..z veya A..Z): </td>
+    <td>Letter only (a..z or A..Z): </td>
     <td><input type="text" id="alfa"></td>
   </tr>
   <tr>
-    <td>Sadece harf ve en fazla 30 uzunlukta olan string: </td>
+    <td>String with only letters and up to 30 lengths: </td>
     <td><input type="text" id="max30"></td>
   </tr>
   <tr>
-    <td>3 kelimeden oluşan string: </td>
+    <td>String of 3 words: </td>
     <td><input type="text" id="uckelime"></td>
   </tr>
   <tr>
-    <td>En az 1 büyük harf, en az 1 küçük harf, en az bir rakam ve en az 1 noktalama işareti içeren ve en az 8 uzunluğunda olan metin: </td>
+    <td>Text with at least 1 long letter, at least 1 lower case, at least one digit and at least 1 punctuation: </td>
     <td><input type="text" id="password"></td>
   </tr>
   
@@ -63,62 +63,58 @@ function validateForm() {
   var password = document.querySelector("#password").value;
 
 
-
-  /* öncelikle hiçbir alan boş olmamalı */
   if(name=='' || email=='' || sayisal=='' || basamakli=='' || alfa=='' || max30=='' || uckelime=='' || password=='' )
   {
-    document.getElementById("eresult").innerHTML = "Tüm alanları doldurmak zorundasınız.";
+    document.getElementById("eresult").innerHTML = "You have to fill all fields.";
     return false;
   }
 
-  /* name alanı boş olmamalı */
   else if(name==''){
-    document.getElementById("eresult").innerHTML = "Name alanı boş olmamalı";
+    document.getElementById("eresult").innerHTML = "The Name field should not be empty";
     return false;
   }
 
-  /*mail adresi kurallara uygun olmalı*/
   else if(!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email)){
-    document.getElementById("eresult").innerHTML = "Geçerli bir mail giriniz";
+    document.getElementById("eresult").innerHTML = "Enter a valid mail";
     return false;
   }
 
 
 
   else if(!/[0-9]/.test(sayisal)){
-    document.getElementById("eresult").innerHTML = "Sadece sayısal değer girmelisiniz";
+    document.getElementById("eresult").innerHTML = "You must only enter numeric values";
     return false;
   }
 
   
   else if(!/[0-9]/.test(basamakli) || basamakli.length < 12 || basamakli.length > 12){
-    document.getElementById("eresult").innerHTML = "Sadece sayısal ve 12 basamaklı değer girmelisiniz";
+    document.getElementById("eresult").innerHTML = "You must enter only numeric and 12-digit value";
     return false;
   }
 
 
   else if(!/[a-zA-Z]/.test(alfa)){
-    document.getElementById("eresult").innerHTML = "Sadece a..z veya A..Z girmelisiniz";
+    document.getElementById("eresult").innerHTML = "You should only enter a..z or A..Z";
     return false;
   }
 
 
   else if(!/[a-zA-Z]/.test(max30) || max30.length > 30){
-    document.getElementById("eresult").innerHTML = "Sadece harf ve en fazla 30 uzunluğunda giriniz";
+    document.getElementById("eresult").innerHTML = "Enter only letters and up to 30 in length";
     return false;
   }
 
 
 
   else if(!/\b\w+\b(?:.*?\b\w+\b){2}/.test(uckelime)){
-    document.getElementById("eresult").innerHTML = "Yalnızca 3 kelimeden oluşan string giriniz";
+    document.getElementById("eresult").innerHTML = "Enter a string of 3 words only";
     return false;
   }
 
 
 
   else if(!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(password) || password.length < 8){
-    document.getElementById("eresult").innerHTML = "En az 1 büyük harf, en az 1 küçük harf, en az bir rakam ve en az 1 noktalama işareti içeren ve en az 8 uzunluğunda olan metin giriniz";
+    document.getElementById("eresult").innerHTML = "Enter at least 1 long letter, at least 1 lower case, at least one digit and at least 1 punctuation text";
     return false;
   }
 
